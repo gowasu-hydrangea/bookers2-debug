@@ -50,8 +50,48 @@
               </p>
               <% end %>
             </td>
+            
+            <!--コメント数-->
+            <td>コメント数：<%= @book.book_comments.count %></td>
+            
         </tr>
       </table>
+      
+      <table>
+        <!--コメント一覧部分-->
+        <tbody>
+          
+            <% @book.book_comments.each do |book_comment| %>
+                <!--コメントしたユーザーの画像表示部分-->
+              <tr>
+                <td>
+                  <%= image_tag book_comment.user.get_profile_image, size:'50x50' %>
+                </td>
+                
+                <!--送信したコメント表示部分-->
+                <td>
+                  <%= book_comment.comment %>
+                </td>
+                
+                  <!--Destroyボタン部分-->
+                <td>
+                  <% if book_comment.user == current_user %>
+                    <%= link_to 'Destroy', book_book_comment_path(book_comment.book, book_comment), method: :delete, class: "btn btn-sm btn-danger"%>
+                  <% end %>
+                </td>
+              </tr>
+            <% end %>
+          
+        </tbody>
+      </table>
+            
+            <!--コメント記入部分-->
+            <div>
+              <%= form_with model: [@book, @book_comment] do |f| %>
+                <%= f.text_area :comment %>
+                <%= f.submit "送信" %>
+              <% end %>
+            </div>
     </div>
   </div>
 </div>
