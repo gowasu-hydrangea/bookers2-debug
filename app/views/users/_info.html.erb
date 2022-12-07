@@ -8,10 +8,17 @@
 	  <th>introduction</th>
 	  <th><%= user.introduction %></th>
   </tr>
+  
+  <!--フォロー数の表示部分(follows)-->
+  
+  <!--フォロワー数の表示部分(followers)-->
+  
 </table>
 　
 <div class='row'>
   <%= link_to edit_user_path(user), class: "btn btn-outline-secondary btn-block" do %>
     <i class="fas fa-user-cog"></i>
   <% end %>
+  
+  <!--フォローする、フォロー外すボタンの表示部分-->
 </div>
