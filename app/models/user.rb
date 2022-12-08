@@ -71,4 +71,25 @@ class User < ApplicationRecord
     followings.include?(user)
   end
   
+  # ポ・基＞課題５
+  # 検索機能の実装
+  # 参考元
+  # https://qiita.com/hapiblog2020/items/6c2cef49df5616da9ae3
+  # 検索方法分岐
+  def self.looks(search, word)
+    # perfect_match＝完全一致
+    if search == "perfect_match"
+      @user = User.where("name LIKE?", "#{word}")
+    # forward_match＝前方一致
+    elsif search == "forward_match"
+      @user = User.where("name LIKE?","#{word}%")
+    backward_match＝後方一致
+    elsif search == "backward_match"
+      @user = User.where("name LIKE?","%#{word}")
+    # perfect_match＝部分一致
+    elsif search == "partial_match"
+      @user = User.all
+    end
+  end
+  
 end
