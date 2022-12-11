@@ -1,0 +1,8 @@
+    <!--インスタンス変数は、favorites_controllerのcreateアクションで定義されたものが使用できる    -->
+    <!--$(".favorite-btn").html("<%= escape_javascript(render partial: 'favorites/favorite_botton', locals: {book: @book}) %>");-->
+    <!--以下の記述でも同じ挙動をします。html()以降では部分テンプレートを呼び出している-->
+    <!--$(".favorite-btn").html("<%= j(render 'favorites/favorite_botton', book: @book) %>");-->
+    
+    <!--参考元-->
+    <!--https://qiita.com/hapiblog2020/items/3ba7e7edc02f01d987b9-->
+    $('#favorite_buttons_<%= @book.id %>').html("<%= j(render "favorites/favorite_botton", book: @book) %>");
